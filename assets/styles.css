@@ -1,0 +1,512 @@
+/* ============================================================
+   Luxury Beauty by Sen — Kosmetikstudio Bonn-Auerberg
+   Gestaltungsprinzip „Das ruhige Protokoll".
+
+   Herleitung: Tubas eigenes Versprechen ist nicht Hochglanz,
+   sondern Erklärung — „Sie erklärt alles ruhig und verständlich,
+   sodass man sich sofort sicher fühlt" (Google-Rezension).
+   Die Seite übersetzt das in Gestaltung: warmes Elfenbein statt
+   Glanz, goldene Haarlinien statt Schatten, echte Behandlungs-
+   daten (Wellenlängen, −26 °C, Hauttyp I–VI, Sitzungszahlen)
+   als sichtbare Annotationsebene. Luxus = Präzision + Ruhe.
+
+   Die Bogenlinie (.bogen) zitiert die Gesichtslinie aus dem Logo.
+
+   Drei Schriften mit klarer Aufgabe:
+     Cormorant Garamond → Überschriften, Preise, Zitate
+     Jost              → Etiketten, Navigation, Buttons, Messwerte
+     IBM Plex Sans     → Fließtext
+   Alle lokal eingebunden (DSGVO, kein Google-CDN),
+   latin + latin-ext wegen türkischer Namen (Tuğba, Tuzcuoglu).
+   ============================================================ */
+
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:300 600;font-display:swap;
+  src:url('fonts/cormorant.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:300 600;font-display:swap;
+  src:url('fonts/cormorant-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:300 500;font-display:swap;
+  src:url('fonts/cormorant-i.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:300 500;font-display:swap;
+  src:url('fonts/cormorant-i-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 600;font-display:swap;
+  src:url('fonts/jost.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Jost';font-style:normal;font-weight:300 600;font-display:swap;
+  src:url('fonts/jost-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Plex Sans';font-style:normal;font-weight:100 700;font-display:swap;
+  src:url('fonts/plex-sans.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Plex Sans';font-style:normal;font-weight:100 700;font-display:swap;
+  src:url('fonts/plex-sans-ext.woff2') format('woff2');
+  unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+
+:root{
+  --creme:#FAF6F0;        /* Grundton, warmes Elfenbein */
+  --blatt:#FFFFFF;
+  --sand:#F2EADE;         /* Tönungsflächen */
+  --rose:#EFE2D8;         /* zarte Akzentfläche */
+  --tinte:#241B14;        /* Fließtext, Espresso statt Schwarz */
+  --tinte-weich:#5A4A3C;  /* Sekundärtext auf Creme: 7,2:1 = AAA */
+  --gold:#C6AC5A;         /* Markengold aus dem Logo – nur Grafik */
+  --gold-tief:#82651A;    /* Gold als TEXT: 5,4:1 auf Creme, 5,0:1 auf Sand = AA.
+                             Vorher #8A6A22 – das lag auf der Sandfläche bei 4,2:1
+                             und wäre für die Etiketten durchgefallen. */
+  --gold-mittel:#9E7F2C;  /* Gold für große Ziffern ab 24 px: 3,5:1 auf Sand = AA large */
+  --gold-hell:#E2D0A0;
+  --nacht:#1C1510;        /* dunkle Sektionen */
+  --nacht-2:#2A2019;
+  --wa:#14803D;           /* WhatsApp-Grün, abgedunkelt für 5:1 auf Weiß */
+  --linie:rgba(36,27,20,.13);
+  --linie-gold:rgba(198,172,90,.42);
+  --linie-hell:rgba(240,232,220,.16);
+  --display:'Cormorant',Georgia,'Times New Roman',serif;
+  --label:'Jost',system-ui,sans-serif;
+  --body:'Plex Sans',system-ui,sans-serif;
+  --max:1200px;
+  --eng:800px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+body{
+  margin:0;background:var(--creme);color:var(--tinte);
+  font-family:var(--body);font-size:1.0625rem;line-height:1.75;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-wrap:break-word;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+p{margin:0 0 1.1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.2rem}
+li{margin-bottom:.45rem}
+strong{font-weight:600}
+:focus-visible{outline:2px solid var(--gold-tief);outline-offset:3px;border-radius:2px}
+.sek--nacht :focus-visible{outline-color:var(--gold-hell)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+[id]{scroll-margin-top:6rem}
+.skip{position:absolute;left:-999px;top:0;z-index:200;background:var(--nacht);color:#fff;padding:.75rem 1.25rem;font-family:var(--label)}
+.skip:focus{left:0}
+
+/* ---------- Typografie ---------- */
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;margin:0 0 1rem;letter-spacing:-.005em;color:var(--tinte)}
+h1{font-size:clamp(2.15rem,6.2vw,4.6rem);line-height:1.05;font-weight:300;letter-spacing:-.018em}
+h2{font-size:clamp(1.95rem,3.9vw,3.1rem);line-height:1.1;font-weight:300;letter-spacing:-.012em}
+h3{font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.22;font-weight:500}
+h4{font-size:1.1rem;line-height:1.3;font-weight:600;font-family:var(--body);letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;font-weight:300;color:var(--gold-tief)}
+
+/* Etikett: gesperrte Versalien in Jost – die Ordnungsebene der Seite */
+.etikett{display:inline-block;font-family:var(--label);font-weight:500;font-size:.72rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold-tief);margin:0 0 1.1rem}
+.etikett--hell{color:var(--gold-hell)}
+.etikett::before{content:"";display:inline-block;width:1.6rem;height:1px;background:currentColor;
+  vertical-align:.32em;margin-right:.7rem;opacity:.8}
+
+.lead{font-size:clamp(1.1rem,1.7vw,1.3rem);line-height:1.65;color:var(--tinte-weich);max-width:56ch}
+.sek--nacht .lead{color:#C3B4A2}
+
+/* Messwerte / Behandlungsdaten – die Präzisionsebene */
+.messwert{font-family:var(--label);font-weight:400;font-size:.8rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--tinte-weich);font-variant-numeric:tabular-nums}
+.sek--nacht .messwert{color:#B6A896}
+
+/* ---------- Raster ---------- */
+.huelle{max-width:var(--max);margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem)}
+.huelle--eng{max-width:var(--eng)}
+.sek{padding-block:clamp(4rem,8.5vw,7.5rem);position:relative}
+.sek--linie{border-top:1px solid var(--linie)}
+.sek--sand{background:var(--sand)}
+.sek--nacht{background:var(--nacht);color:#E8DFD4}
+.sek--nacht h1,.sek--nacht h2,.sek--nacht h3,.sek--nacht h4{color:#FBF7F1}
+.sek--nacht em{color:var(--gold-hell)}
+.sek__kopf{max-width:44rem;margin-bottom:clamp(2.5rem,4vw,3.75rem)}
+.sek__kopf--mitte{margin-inline:auto;text-align:center}
+.sek__kopf--mitte .etikett::before{display:none}
+
+/* Bogenlinie: das Logo-Zitat als flächige Signatur */
+.bogen{position:absolute;pointer-events:none;z-index:0;color:var(--gold);opacity:.16}
+.bogen svg{width:100%;height:auto;display:block}
+.sek--nacht .bogen{opacity:.13}
+.bogen--hero{top:-6%;right:-8%;width:min(46vw,620px)}
+.bogen--sek{bottom:-10%;left:-6%;width:min(34vw,420px);opacity:.1}
+@media (max-width:900px){.bogen{display:none}}
+
+/* ---------- Buttons ---------- */
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  font-family:var(--label);font-weight:500;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;padding:.95rem 1.7rem;border:1px solid transparent;border-radius:2px;
+  transition:background-color .22s,color .22s,border-color .22s;cursor:pointer;white-space:nowrap}
+.knopf--gold{background:var(--gold);color:var(--tinte);border-color:var(--gold)}
+.knopf--gold:hover{background:var(--gold-hell);border-color:var(--gold-hell)}
+.knopf--rand{background:transparent;color:var(--tinte);border-color:rgba(36,27,20,.32)}
+.knopf--rand:hover{border-color:var(--tinte);background:rgba(36,27,20,.04)}
+.sek--nacht .knopf--rand,.fuss .knopf--rand{color:#F0E8DC;border-color:rgba(240,232,220,.34)}
+.sek--nacht .knopf--rand:hover,.fuss .knopf--rand:hover{border-color:var(--gold-hell);background:rgba(240,232,220,.06)}
+.knopf svg{width:1.05em;height:1.05em;flex:none}
+.knopf--rand .wa-punkt{color:var(--wa)}
+.sek--nacht .knopf--rand .wa-punkt{color:#4ED88A}
+.knopf-paar{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+/* Anruf und WhatsApp bleiben auch auf dem Handy nebeneinander (Hausregel):
+   zwei kompakte Buttons, keine gestapelten Kacheln. Steht nur einer da,
+   behält er seine natürliche Breite. */
+@media (max-width:560px){
+  .knopf-paar{flex-wrap:nowrap}
+  .knopf-paar .knopf{flex:1 1 0;min-width:0;padding-inline:.85rem;
+    font-size:.72rem;letter-spacing:.07em}
+  .knopf-paar .knopf:only-child{flex:0 1 auto}
+}
+
+/* Textlink mit goldener Unterlinie */
+.pfeil{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--label);font-weight:500;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  color:var(--gold-tief);border-bottom:1px solid var(--linie-gold);padding-bottom:.25rem;
+  transition:border-color .2s,gap .2s}
+.pfeil:hover{border-color:var(--gold-tief);gap:.85rem}
+.sek--nacht .pfeil{color:var(--gold-hell);border-color:rgba(226,208,160,.4)}
+.sek--nacht .pfeil:hover{border-color:var(--gold-hell)}
+
+/* ---------- Kopf / Navigation ---------- */
+.kopf{position:sticky;top:0;z-index:100;background:rgba(250,246,240,.93);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linie)}
+.kopf__in{max-width:var(--max);margin-inline:auto;padding:.7rem clamp(1.25rem,4vw,2.5rem);
+  display:flex;align-items:center;gap:1.5rem}
+.marke{display:block;margin-right:auto;line-height:0}
+.marke img{height:44px;width:auto}
+.nav{display:flex;gap:1.6rem;align-items:center}
+.nav a{font-family:var(--label);font-weight:400;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;color:var(--tinte);padding:.4rem 0;border-bottom:1px solid transparent;transition:border-color .2s}
+.nav a:hover{border-color:var(--gold)}
+.nav a[aria-current="page"]{border-color:var(--gold-tief)}
+.kopf__cta .knopf{padding:.75rem 1.25rem;font-size:.75rem}
+.nav-schalter{display:none;width:46px;height:46px;padding:12px;background:none;
+  border:1px solid var(--linie);border-radius:2px;cursor:pointer}
+.nav-schalter span{display:block;height:1.5px;background:var(--tinte);margin:4px 0;transition:transform .25s,opacity .25s}
+.nav-schalter[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.nav-schalter[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-schalter[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+@media (max-width:900px){
+  .marke img{height:38px}
+  .nav-schalter{display:block;order:3}
+  .kopf__cta{order:2}
+  .kopf__cta .knopf{padding:.7rem 1rem;font-size:.7rem;letter-spacing:.1em}
+  .nav{position:absolute;inset:100% 0 auto;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--creme);border-bottom:1px solid var(--linie);padding:.5rem clamp(1.25rem,4vw,2.5rem) 1.5rem;
+    display:none}
+  .nav.offen{display:flex}
+  .nav a{padding:.95rem 0;border-bottom:1px solid var(--linie);font-size:.85rem}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;padding-block:clamp(3rem,6vw,5.5rem) clamp(3.5rem,7vw,6rem)}
+.hero__in{position:relative;z-index:1;display:grid;grid-template-columns:1.08fr .92fr;
+  gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero h1{margin-bottom:1.5rem}
+.hero .lead{margin-bottom:2rem}
+.hero__marken{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:2.25rem;
+  padding-top:1.5rem;border-top:1px solid var(--linie)}
+.hero__marken li{list-style:none;margin:0;display:flex;align-items:center;gap:.5rem}
+.hero__marken .messwert{font-size:.76rem}
+/* Sterne sind bewusst im hellen Markengold und durchgehend aria-hidden bzw.
+   mit role="img"+Label ausgezeichnet: Die Bewertung steht immer zusätzlich
+   als Text daneben („5,0 bei Google"), die Glyphen sind reine Dekoration. */
+.sterne{color:var(--gold);letter-spacing:.08em;font-size:.85rem}
+/* ★ ist in Cormorant nicht enthalten und würde als schwarzes System-Glyph
+   in die Überschrift brechen – Sterne stehen deshalb immer als eigene Zeile. */
+.sterne--gross{font-size:1.1rem;letter-spacing:.3em;margin:0 0 .9rem}
+
+/* Bildkollage: großes Hochformat + versetztes Detail mit Goldrahmen */
+.kollage{position:relative}
+.kollage__gross{border-radius:2px;overflow:hidden}
+.kollage__gross img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.kollage__klein{position:absolute;left:-2.5rem;bottom:-2rem;width:46%;
+  border:6px solid var(--creme);border-radius:2px;overflow:hidden}
+.kollage__klein img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.kollage__notiz{position:absolute;right:-1.25rem;top:1.75rem;background:var(--creme);
+  border:1px solid var(--linie-gold);padding:.7rem 1rem;text-align:center;border-radius:2px}
+.kollage__notiz b{display:block;font-family:var(--display);font-size:1.6rem;font-weight:500;line-height:1;color:var(--gold-tief)}
+.kollage__notiz span{display:block;font-family:var(--label);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--tinte-weich);margin-top:.3rem}
+
+@media (max-width:900px){
+  .hero__in{grid-template-columns:1fr;gap:2.5rem}
+  .kollage{max-width:26rem;margin-inline:auto;width:100%}
+  .kollage__klein{left:-.75rem;bottom:-1rem;width:42%;border-width:5px}
+  .kollage__notiz{right:0;top:1rem}
+}
+
+/* ---------- Vertrauensband ---------- */
+.band{background:var(--nacht);color:#E8DFD4}
+.band__in{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linie-hell)}
+.band__zelle{background:var(--nacht);padding:2rem clamp(1rem,2.2vw,1.75rem)}
+.band__zelle b{display:block;font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.1rem);
+  font-weight:400;color:var(--gold-hell);line-height:1.1;margin-bottom:.45rem}
+.band__zelle p{margin:0;font-size:.9rem;line-height:1.55;color:#B6A896}
+@media (max-width:820px){.band__in{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.band__in{grid-template-columns:1fr}}
+
+/* ---------- Behandlungskarten ----------
+   Hierarchie mit Absicht: die Haarentfernung ist das Kerngeschäft und
+   bekommt eine breite Feature-Karte, die drei übrigen stehen darunter
+   in einer Reihe. Vier gleich große Karten wären auf 1.120 px je 256 px
+   schmal geworden — zu eng für Bild, Text und Liste. */
+.karten{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.25rem,2.5vw,2rem)}
+.karte{display:flex;flex-direction:column;background:var(--blatt);border:1px solid var(--linie);
+  border-radius:2px;overflow:hidden;text-decoration:none;color:inherit;
+  transition:border-color .25s,transform .25s}
+.karte:hover{border-color:var(--linie-gold);transform:translateY(-3px)}
+.karte__bild{position:relative;overflow:hidden}
+.karte__bild img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:scale .5s ease}
+.karte:hover .karte__bild img{scale:1.04}
+.karte__ab{position:absolute;right:.75rem;bottom:.75rem;background:rgba(250,246,240,.94);
+  font-family:var(--label);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .7rem;border-radius:2px;color:var(--tinte)}
+.karte__text{padding:1.6rem 1.5rem 1.75rem;display:flex;flex-direction:column;flex:1}
+.karte__text h3{margin-bottom:.6rem}
+.karte__text p{font-size:.95rem;color:var(--tinte-weich);margin-bottom:1.2rem}
+.karte__text .pfeil{margin-top:auto;align-self:flex-start}
+.karte__liste{list-style:none;padding:0;margin:0 0 1.2rem;font-size:.88rem;color:var(--tinte-weich)}
+.karte__liste li{position:relative;padding-left:1.1rem;margin-bottom:.3rem}
+.karte__liste li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
+  background:var(--gold);border-radius:50%}
+
+/* Feature-Karte: die Haarentfernung ist das Kerngeschäft und bekommt Breite.
+   Vier gleich große Karten wären auf 1.120 px je 256 px schmal geworden. */
+.karte--gross{grid-column:1/-1;display:grid;grid-template-columns:1.02fr .98fr;
+  margin-bottom:clamp(.25rem,1vw,.5rem)}
+.karte--gross:hover{transform:none;border-color:var(--linie-gold)}
+.karte--gross .karte__bild{height:100%}
+.karte--gross .karte__bild img{aspect-ratio:auto;height:100%;min-height:22rem}
+.karte--gross .karte__text{padding:clamp(2rem,3.5vw,3rem) clamp(1.75rem,3vw,2.75rem);justify-content:center}
+.karte--gross .karte__text .etikett{margin-bottom:.9rem}
+.karte--gross .karte__text h3{font-size:clamp(1.7rem,2.8vw,2.25rem);font-weight:400;margin-bottom:.9rem}
+.karte--gross .karte__text p{font-size:1.02rem;max-width:40ch}
+.karte--gross .karte__liste{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1.5rem}
+.karte--gross .karte__ab{font-size:.74rem;padding:.45rem .85rem}
+@media (max-width:960px){
+  .karten{grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+  .karte--gross{grid-template-columns:1fr}
+  .karte--gross .karte__bild img{aspect-ratio:3/2;min-height:0}
+}
+@media (max-width:520px){
+  .karte--gross .karte__liste{grid-template-columns:1fr}
+}
+
+/* ---------- Zweispalter Text/Bild ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.duo--schmal{grid-template-columns:.95fr 1.05fr}
+.duo__bild img{width:100%;border-radius:2px}
+.duo--kehr .duo__text{order:2}
+@media (max-width:900px){
+  .duo,.duo--schmal{grid-template-columns:1fr;gap:2.25rem}
+  .duo--kehr .duo__text{order:0}
+}
+
+/* ---------- Technik-Sektion mit freigestelltem Gerät ---------- */
+.technik__in{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.technik__geraet{justify-self:center;max-width:17.5rem;position:relative}
+.technik__geraet img{width:100%;filter:drop-shadow(0 24px 44px rgba(0,0,0,.45))}
+.technik__daten{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;
+  background:var(--linie-hell);border:1px solid var(--linie-hell);margin-top:2.25rem}
+.technik__daten div{background:var(--nacht);padding:1.35rem 1.4rem}
+.technik__daten dt{font-family:var(--label);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:#9E8F7C;margin-bottom:.5rem}
+.technik__daten dd{margin:0;font-family:var(--display);font-size:1.5rem;font-weight:400;
+  color:var(--gold-hell);line-height:1.15;font-variant-numeric:tabular-nums}
+.technik__daten dd small{display:block;font-family:var(--body);font-size:.82rem;color:#B6A896;
+  margin-top:.35rem;letter-spacing:0}
+@media (max-width:900px){
+  .technik__in{grid-template-columns:1fr}
+  .technik__geraet{max-width:11rem;order:2}
+}
+
+/* ---------- Ablauf: nummerierte Schritte ---------- */
+.schritte{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0;
+  border-top:1px solid var(--linie)}
+.schritt{padding:2.25rem 2rem 2rem 0;border-right:1px solid var(--linie)}
+.schritt+.schritt{padding-left:2rem}
+.schritt:last-child{border-right:0;padding-right:0}
+/* Die Schrittziffern sind lesbarer Text, kein Ornament – deshalb das
+   mittlere Gold statt des hellen Markengolds (das lag bei 2,1:1). */
+.schritt b{display:block;font-family:var(--display);font-size:2.6rem;font-weight:300;
+  color:var(--gold-mittel);line-height:1;margin-bottom:.9rem;font-variant-numeric:lining-nums}
+.sek--nacht .schritt b{color:var(--gold-hell)}
+.schritt h3{font-size:1.25rem;margin-bottom:.55rem}
+.schritt p{font-size:.95rem;color:var(--tinte-weich);margin:0}
+.sek--nacht .schritte{border-color:var(--linie-hell)}
+.sek--nacht .schritt{border-color:var(--linie-hell)}
+.sek--nacht .schritt p{color:#B6A896}
+@media (max-width:900px){
+  .schritt{border-right:0;border-bottom:1px solid var(--linie);padding:1.75rem 0}
+  .schritt:last-child{border-bottom:0}
+  .sek--nacht .schritt{border-color:var(--linie-hell)}
+}
+
+/* ---------- Person / E-E-A-T ---------- */
+.person__bild{position:relative}
+.person__bild img{width:100%;border-radius:2px}
+.person__zitat{margin:0 0 1.75rem;font-family:var(--display);font-style:italic;font-weight:300;
+  font-size:clamp(1.4rem,2.4vw,1.95rem);line-height:1.32;color:var(--tinte)}
+.person__fakten{list-style:none;padding:0;margin:1.75rem 0 0;border-top:1px solid var(--linie)}
+.person__fakten li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--linie);
+  margin:0;font-size:.95rem}
+.person__fakten dt,.person__fakten b{font-family:var(--label);font-weight:500;font-size:.72rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold-tief);flex:0 0 9rem;padding-top:.28em}
+
+/* ---------- Rezensionen ---------- */
+.stimmen{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,2rem)}
+.stimme{background:var(--blatt);border:1px solid var(--linie);border-radius:2px;padding:2rem 1.75rem;
+  display:flex;flex-direction:column}
+.stimme__sterne{color:var(--gold);letter-spacing:.12em;margin-bottom:1rem;font-size:.95rem}
+.stimme blockquote{margin:0 0 1.5rem;font-family:var(--display);font-size:1.22rem;line-height:1.5;
+  font-weight:400;color:var(--tinte)}
+.stimme figcaption{margin-top:auto;font-family:var(--label);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinte-weich);padding-top:1rem;border-top:1px solid var(--linie)}
+.stimme figcaption span{display:block;letter-spacing:.1em;margin-top:.25rem;opacity:.75;text-transform:none;
+  font-size:.75rem}
+
+/* ---------- Preise ---------- */
+.preisblock{margin-bottom:clamp(2.5rem,4vw,3.5rem)}
+.preisblock > h3{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem}
+.preisblock > h3::after{content:"";flex:1;height:1px;background:var(--linie-gold)}
+.preisliste{list-style:none;padding:0;margin:0}
+.preisliste li{display:flex;align-items:baseline;gap:.75rem;padding:.7rem 0;
+  border-bottom:1px solid var(--linie);margin:0}
+.preisliste li:last-child{border-bottom:0}
+.preisliste .name{flex:0 1 auto}
+.preisliste .fuell{flex:1 1 auto;border-bottom:1px dotted rgba(36,27,20,.24);transform:translateY(-.25em)}
+.preisliste .preis{font-family:var(--display);font-size:1.3rem;font-weight:500;
+  font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--tinte)}
+.preisliste small{display:block;font-size:.82rem;color:var(--tinte-weich);line-height:1.4}
+.preis-spalten{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));
+  gap:clamp(2rem,4vw,3.5rem)}
+.preis-hinweis{background:var(--sand);border-left:2px solid var(--gold);padding:1.35rem 1.5rem;
+  font-size:.95rem;color:var(--tinte-weich);margin:2rem 0 0}
+.preis-hinweis p:last-child{margin-bottom:0}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--linie)}
+.faq details{border-bottom:1px solid var(--linie)}
+.faq summary{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem 0;cursor:pointer;
+  font-family:var(--display);font-size:clamp(1.15rem,1.8vw,1.4rem);font-weight:500;line-height:1.35;
+  list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:11px;height:11px;margin-left:auto;margin-top:.55em;
+  border-right:1.5px solid var(--gold-tief);border-bottom:1.5px solid var(--gold-tief);
+  transform:rotate(45deg);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq__antwort{padding:0 0 1.6rem;max-width:62ch;color:var(--tinte-weich)}
+.faq__antwort p:last-child,.faq__antwort ul:last-child{margin-bottom:0}
+
+/* ---------- Kontaktzeile / Abschluss ---------- */
+.schluss__in{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+/* Grundfassung ist die HELLE – dieselbe Liste steht auf der Kontaktseite auf
+   Creme und in den Abschluss-Sektionen auf Nachtgrund. Die dunkle Variante
+   ist der Sonderfall und wird unten überschrieben. Andersherum wären die
+   Labels auf Creme bei 2,9:1 gelandet. */
+.kontaktliste{list-style:none;padding:0;margin:0;border-top:1px solid var(--linie)}
+.kontaktliste li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding:.9rem 0;
+  border-bottom:1px solid var(--linie);margin:0;font-size:.98rem}
+.kontaktliste b{font-family:var(--label);font-weight:500;font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-tief);padding-top:.35em}
+.kontaktliste a{color:var(--tinte);text-decoration:none;border-bottom:1px solid var(--linie-gold)}
+.kontaktliste a:hover{border-color:var(--gold-tief)}
+.sek--nacht .kontaktliste,.sek--nacht .kontaktliste li{border-color:var(--linie-hell)}
+.sek--nacht .kontaktliste b{color:#B6A896}
+.sek--nacht .kontaktliste a{color:var(--gold-hell);border-color:rgba(226,208,160,.42)}
+.sek--nacht .kontaktliste a:hover{border-color:var(--gold-hell)}
+@media (max-width:520px){
+  .kontaktliste li{grid-template-columns:1fr;gap:.3rem}
+  .kontaktliste b{padding-top:0}
+}
+.karte-link{display:block;margin-top:1.5rem;border:1px solid var(--linie);border-radius:2px;
+  padding:1.25rem 1.4rem;text-decoration:none;transition:border-color .2s}
+.karte-link:hover{border-color:var(--gold)}
+.sek--nacht .karte-link{border-color:var(--linie-hell)}
+
+/* ---------- Zwei-Klick-Karte ----------
+   Google Maps setzt beim Laden Cookies und überträgt die IP. Deshalb wird
+   der iframe erst nach ausdrücklicher Zustimmung eingehängt (siehe seite.js). */
+.karte-box{border:1px solid var(--linie);background:var(--sand);border-radius:2px;overflow:hidden}
+.karte-box__platzhalter{padding:clamp(1.5rem,3vw,2rem)}
+.karte-box__platzhalter p{font-size:.92rem;color:var(--tinte-weich);max-width:44ch}
+.karte-box iframe{display:block;width:100%;height:340px;border:0}
+
+/* ---------- Formular ---------- */
+.formular{display:grid;gap:1.1rem}
+.feld{display:grid;gap:.4rem}
+.feld label{font-family:var(--label);font-weight:500;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tinte-weich)}
+.feld input,.feld select,.feld textarea{font-family:var(--body);font-size:1rem;color:var(--tinte);
+  background:var(--blatt);border:1px solid var(--linie);border-radius:2px;padding:.8rem .9rem;width:100%}
+.feld textarea{min-height:8rem;resize:vertical}
+.feld input:focus,.feld select:focus,.feld textarea:focus{border-color:var(--gold);outline:none;
+  box-shadow:0 0 0 3px rgba(198,172,90,.22)}
+.feld--zwei{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media (max-width:560px){.feld--zwei{grid-template-columns:1fr}}
+.zustimmung{display:flex;gap:.7rem;align-items:flex-start;font-size:.88rem;color:var(--tinte-weich)}
+.zustimmung input{width:1.1rem;height:1.1rem;margin-top:.28rem;flex:none;accent-color:var(--gold-tief)}
+.formular__hinweis{font-size:.85rem;color:var(--tinte-weich);margin:0}
+
+@media (max-width:900px){.schluss__in{grid-template-columns:1fr}}
+
+/* ---------- Brotkrumen ---------- */
+.krumen{font-family:var(--label);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--tinte-weich);padding-top:1.75rem}
+.krumen ol{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:0}
+.krumen li{margin:0}
+.krumen li+li::before{content:"›";margin-right:.5rem;color:var(--gold)}
+.krumen a{text-decoration:none;border-bottom:1px solid transparent}
+.krumen a:hover{border-color:var(--gold)}
+
+/* ---------- Inhaltstext (Rechtsseiten, lange Fließtexte) ---------- */
+.fliess{max-width:70ch}
+.fliess h2{font-size:clamp(1.5rem,2.6vw,2rem);margin-top:2.75rem}
+.fliess h3{font-size:1.2rem;margin-top:2rem}
+.fliess h2:first-child,.fliess h3:first-child{margin-top:0}
+.fliess ul{padding-left:1.15rem}
+
+/* ---------- Fuß ---------- */
+.fuss{background:var(--nacht-2);color:#C3B4A2;padding-block:clamp(3rem,5vw,4.5rem) 2rem;font-size:.94rem}
+.fuss__in{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(2rem,4vw,3.5rem)}
+.fuss h4{font-family:var(--label);font-weight:500;font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-hell);margin-bottom:1.1rem}
+.fuss img{height:48px;width:auto;margin-bottom:1.5rem}
+.fuss ul{list-style:none;padding:0;margin:0}
+.fuss li{margin-bottom:.6rem}
+.fuss a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.fuss a:hover{border-color:var(--gold)}
+.fuss address{font-style:normal;line-height:1.8}
+.fuss__unten{margin-top:clamp(2.5rem,4vw,3.5rem);padding-top:1.5rem;border-top:1px solid var(--linie-hell);
+  display:flex;flex-wrap:wrap;gap:.75rem 1.75rem;align-items:center;font-size:.85rem;color:#9E8F7C}
+.fuss__unten a{color:#9E8F7C}
+.fuss__credit{margin-left:auto}
+.fuss__credit a{color:var(--gold-hell)}
+@media (max-width:820px){
+  .fuss__in{grid-template-columns:1fr 1fr}
+  .fuss__marke{grid-column:1/-1}
+  .fuss__credit{margin-left:0}
+}
+@media (max-width:520px){.fuss__in{grid-template-columns:1fr}}
+
+/* ---------- Scroll-Einblendung (nur mit JS) ---------- */
+.js .einblenden{opacity:0;transform:translateY(18px)}
+.js .einblenden.sichtbar{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+@media (prefers-reduced-motion:reduce){
+  .js .einblenden{opacity:1;transform:none}
+}
+
+/* ---------- Druck ---------- */
+@media print{
+  .kopf,.schluss,.bogen,.knopf,.nav-schalter{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .sek{padding-block:1rem}
+}

@@ -1,0 +1,316 @@
+/* ============================================================
+   VARIANTE A — „Dark & Tech-Luxe"
+   Warmes Fast-Schwarz, randlose Bilder, Gold nur als Akzent,
+   24-px-Rundungen, Glasflächen, Pill-Buttons, fixe Aktionsleiste
+   auf dem Handy. Bezug: das Kerngeschäft ist ein Laser — Technik
+   und Präzision dürfen man ansehen.
+   ============================================================ */
+
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('fonts/inter-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('fonts/inter-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+
+:root{
+  --nacht:#0E0D0C;
+  --nacht-2:#151312;
+  --glas:rgba(255,255,255,.045);
+  --glas-rand:rgba(255,255,255,.10);
+  --glas-rand-hell:rgba(255,255,255,.18);
+  --weiss:#F5F2ED;
+  --weiss-weich:#A9A29A;   /* 7,0:1 auf Nacht */
+  --gold:#D8B863;
+  --gold-tief:#8A6E28;
+  --wa:#3FD07E;
+  --r:24px;
+  --r-klein:14px;
+  --r-pill:999px;
+  --max:1240px;
+  --schrift:'Inter',system-ui,-apple-system,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{
+  margin:0;background:var(--nacht);color:var(--weiss);
+  font-family:var(--schrift);font-size:1.0625rem;line-height:1.65;font-weight:400;
+  letter-spacing:-.011em;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+p{margin:0 0 1.05rem}
+ul,ol{margin:0 0 1.05rem;padding-left:1.15rem}
+li{margin-bottom:.4rem}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+[id]{scroll-margin-top:6rem}
+.skip{position:absolute;left:-999px;top:0;z-index:300;background:var(--gold);color:#14110A;padding:.8rem 1.3rem;border-radius:0 0 12px 0;font-weight:600}
+.skip:focus{left:0}
+
+h1,h2,h3{margin:0 0 1rem;font-weight:600;letter-spacing:-.038em;line-height:1.02;color:#fff}
+h1{font-size:clamp(2.6rem,7.2vw,5.6rem);letter-spacing:-.045em}
+h2{font-size:clamp(2rem,4.4vw,3.5rem)}
+h3{font-size:1.3rem;letter-spacing:-.024em;line-height:1.2}
+h1 em,h2 em{font-style:normal;color:var(--gold)}
+
+.etikett{display:inline-flex;align-items:center;gap:.55rem;font-size:.72rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 1.1rem}
+.etikett::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.lead{font-size:clamp(1.06rem,1.5vw,1.24rem);line-height:1.6;color:var(--weiss-weich);max-width:54ch}
+.mess{font-size:.8rem;letter-spacing:.04em;color:var(--weiss-weich);font-variant-numeric:tabular-nums}
+
+.huelle{max-width:var(--max);margin-inline:auto;padding-inline:clamp(1.15rem,4vw,2.5rem)}
+.sek{padding-block:clamp(4rem,8vw,7.5rem);position:relative}
+.sek__kopf{max-width:46rem;margin-bottom:clamp(2.25rem,4vw,3.5rem)}
+
+/* Warmer Lichtschein hinter dem Hero – ersetzt die alte Haarlinien-Deko */
+.schein{position:absolute;inset:auto;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(216,184,99,.16),rgba(216,184,99,0) 68%);
+  filter:blur(20px)}
+.schein--hero{top:-16rem;right:-14rem;width:52rem;height:52rem}
+.schein--klein{bottom:-18rem;left:-16rem;width:40rem;height:40rem;
+  background:radial-gradient(circle,rgba(216,184,99,.10),rgba(216,184,99,0) 68%)}
+
+/* ---------- Buttons ---------- */
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  font-size:.9rem;font-weight:600;letter-spacing:-.012em;text-decoration:none;
+  padding:.9rem 1.55rem;border-radius:var(--r-pill);border:1px solid transparent;
+  transition:background-color .2s,border-color .2s,transform .2s;cursor:pointer;white-space:nowrap}
+.knopf:hover{transform:translateY(-1px)}
+.knopf--gold{background:var(--gold);color:#14110A}
+.knopf--gold:hover{background:#E8CC85}
+.knopf--glas{background:var(--glas);color:var(--weiss);border-color:var(--glas-rand);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.knopf--glas:hover{border-color:var(--glas-rand-hell);background:rgba(255,255,255,.08)}
+.knopf svg{width:1.1em;height:1.1em;flex:none}
+.knopf--glas .wa{color:var(--wa)}
+.knopf-paar{display:flex;flex-wrap:wrap;gap:.65rem}
+.pfeil{display:inline-flex;align-items:center;gap:.45rem;font-size:.88rem;font-weight:600;
+  color:var(--gold);text-decoration:none;transition:gap .2s}
+.pfeil:hover{gap:.8rem}
+
+/* ---------- Kopf: schwebende Pillen-Navigation ---------- */
+.kopf{position:sticky;top:0;z-index:200;padding:.85rem 0;
+  background:rgba(14,13,12,.72);backdrop-filter:blur(18px) saturate(1.4);
+  -webkit-backdrop-filter:blur(18px) saturate(1.4);
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.kopf__in{max-width:var(--max);margin-inline:auto;padding-inline:clamp(1.15rem,4vw,2.5rem);
+  display:flex;align-items:center;gap:1.25rem}
+.marke{margin-right:auto;line-height:0}
+.marke img{height:38px;width:auto}
+.nav{display:flex;gap:.15rem;align-items:center;background:var(--glas);
+  border:1px solid var(--glas-rand);border-radius:var(--r-pill);padding:.3rem}
+.nav a{font-size:.84rem;font-weight:500;text-decoration:none;color:var(--weiss-weich);
+  padding:.5rem .85rem;border-radius:var(--r-pill);transition:background-color .2s,color .2s}
+.nav a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav a[aria-current="page"]{color:#14110A;background:var(--gold)}
+.kopf__cta .knopf{padding:.7rem 1.2rem;font-size:.84rem}
+.nav-schalter{display:none;width:44px;height:44px;padding:12px;background:var(--glas);
+  border:1px solid var(--glas-rand);border-radius:14px;cursor:pointer}
+.nav-schalter span{display:block;height:1.5px;background:var(--weiss);margin:4px 0;transition:transform .25s,opacity .25s}
+.nav-schalter[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.nav-schalter[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-schalter[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+@media (max-width:1000px){
+  .nav-schalter{display:block;order:3}
+  .kopf__cta{order:2}
+  .nav{position:absolute;inset:100% .9rem auto;flex-direction:column;align-items:stretch;
+    padding:.6rem;border-radius:20px;background:rgba(21,19,18,.97);backdrop-filter:blur(18px);display:none}
+  .nav.offen{display:flex}
+  .nav a{padding:.85rem 1rem;font-size:.95rem}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding-block:clamp(2.5rem,5vw,4.5rem) clamp(3rem,6vw,5rem);overflow:hidden}
+.hero__in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(2rem,4vw,4rem);align-items:center}
+.hero h1{margin-bottom:1.4rem}
+.hero .lead{margin-bottom:2rem}
+.hero__bild{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate}
+.hero__bild img{width:100%;aspect-ratio:4/5;object-fit:cover}
+/* Bild läuft nach unten ins Schwarz aus statt hart abzuschneiden */
+.hero__bild::after{content:"";position:absolute;inset:auto 0 0;height:38%;
+  background:linear-gradient(to top,var(--nacht),transparent)}
+.plakette{position:absolute;left:1.1rem;bottom:1.1rem;z-index:2;display:flex;align-items:center;gap:.7rem;
+  background:rgba(20,18,16,.62);border:1px solid var(--glas-rand-hell);border-radius:var(--r-pill);
+  padding:.6rem .95rem;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.plakette b{font-size:1.15rem;font-weight:600;letter-spacing:-.03em}
+.plakette span{font-size:.78rem;color:var(--weiss-weich)}
+.sterne{color:var(--gold);letter-spacing:.06em;font-size:.8rem}
+
+.marken{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2.1rem;padding:0;list-style:none}
+.marken li{display:flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--weiss-weich);
+  background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r-pill);padding:.45rem .9rem}
+.marken b{color:var(--weiss);font-weight:600}
+
+@media (max-width:900px){
+  .hero__in{grid-template-columns:1fr;gap:2.5rem}
+  .hero__bild{max-width:30rem;margin-inline:auto;width:100%}
+}
+
+/* ---------- Kennzahlen ---------- */
+.zahlen{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+.zahl{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r);
+  padding:1.75rem 1.5rem}
+.zahl b{display:block;font-size:clamp(1.9rem,3vw,2.6rem);font-weight:600;letter-spacing:-.045em;
+  color:var(--gold);line-height:1;margin-bottom:.6rem;font-variant-numeric:tabular-nums}
+.zahl p{margin:0;font-size:.92rem;line-height:1.5;color:var(--weiss-weich)}
+@media (max-width:860px){.zahlen{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:440px){.zahlen{grid-template-columns:1fr}}
+
+/* ---------- Bento-Raster der Behandlungen ---------- */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.kachel{position:relative;display:block;border-radius:var(--r);overflow:hidden;text-decoration:none;
+  color:var(--weiss);background:var(--nacht-2);border:1px solid var(--glas-rand);
+  min-height:19rem;transition:border-color .25s,transform .25s}
+.kachel:hover{border-color:rgba(216,184,99,.45);transform:translateY(-4px)}
+.kachel--breit{grid-column:span 2;min-height:23rem}
+.kachel__bild{position:absolute;inset:0}
+.kachel__bild img{width:100%;height:100%;object-fit:cover;transition:scale .6s cubic-bezier(.2,.7,.3,1)}
+.kachel:hover .kachel__bild img{scale:1.05}
+.kachel__bild::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,9,8,.94) 12%,rgba(10,9,8,.55) 48%,rgba(10,9,8,.15) 100%)}
+.kachel__text{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:1.6rem 1.5rem}
+.kachel__text h3{margin-bottom:.45rem}
+.kachel--breit .kachel__text h3{font-size:clamp(1.5rem,2.4vw,2rem);letter-spacing:-.035em}
+.kachel__text p{margin:0 0 1.1rem;font-size:.94rem;color:#CFC8BF;max-width:36ch}
+.kachel__preis{position:absolute;top:1.1rem;right:1.1rem;z-index:1;font-size:.78rem;font-weight:600;
+  background:rgba(20,18,16,.6);border:1px solid var(--glas-rand-hell);border-radius:var(--r-pill);
+  padding:.4rem .8rem;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.kachel__liste{list-style:none;padding:0;margin:0 0 1.1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+.kachel__liste li{margin:0;font-size:.74rem;color:#CFC8BF;background:rgba(255,255,255,.07);
+  border-radius:var(--r-pill);padding:.3rem .7rem}
+@media (max-width:900px){
+  .bento{grid-template-columns:1fr}
+  .kachel--breit{grid-column:span 1}
+}
+
+/* ---------- Technik ---------- */
+.technik{position:relative;overflow:hidden;background:
+  radial-gradient(120% 90% at 20% 0%,rgba(216,184,99,.10),transparent 62%),var(--nacht-2)}
+.technik__in{position:relative;z-index:1;display:grid;grid-template-columns:.8fr 1.2fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center}
+.technik__geraet{justify-self:center;max-width:17rem;position:relative}
+.technik__geraet::before{content:"";position:absolute;inset:12% -18% 4%;border-radius:50%;
+  background:radial-gradient(circle,rgba(216,184,99,.28),transparent 70%);filter:blur(28px)}
+.technik__geraet img{position:relative;width:100%;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+.spezies{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin-top:2.25rem}
+.spez{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r-klein);padding:1.25rem 1.3rem}
+.spez dt{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--weiss-weich);margin-bottom:.5rem}
+.spez dd{margin:0;font-size:1.45rem;font-weight:600;letter-spacing:-.035em;color:var(--gold);
+  font-variant-numeric:tabular-nums;line-height:1.15}
+.spez dd small{display:block;font-size:.82rem;font-weight:400;color:var(--weiss-weich);
+  letter-spacing:-.01em;margin-top:.4rem;line-height:1.45}
+@media (max-width:900px){
+  .technik__in{grid-template-columns:1fr}
+  .technik__geraet{max-width:11rem;order:2}
+}
+
+/* ---------- Ablauf ---------- */
+.schritte{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;counter-reset:s}
+.schritt{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r);padding:1.9rem 1.6rem}
+.schritt b{display:inline-flex;align-items:center;justify-content:center;width:2.4rem;height:2.4rem;
+  border-radius:50%;background:var(--gold);color:#14110A;font-size:.95rem;font-weight:700;
+  margin-bottom:1.1rem;font-variant-numeric:tabular-nums}
+.schritt h3{font-size:1.18rem;margin-bottom:.5rem}
+.schritt p{margin:0;font-size:.94rem;color:var(--weiss-weich)}
+@media (max-width:860px){.schritte{grid-template-columns:1fr}}
+
+/* ---------- Person ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.duo--schmal{grid-template-columns:.92fr 1.08fr}
+.duo img{width:100%;border-radius:var(--r)}
+@media (max-width:900px){.duo,.duo--schmal{grid-template-columns:1fr;gap:2.25rem}}
+.zitat{margin:0 0 1.6rem;font-size:clamp(1.35rem,2.4vw,1.9rem);font-weight:500;
+  letter-spacing:-.032em;line-height:1.25;color:#fff}
+.fakten{list-style:none;padding:0;margin:1.6rem 0 0}
+.fakten li{display:grid;grid-template-columns:8rem 1fr;gap:1rem;padding:.8rem 0;
+  border-top:1px solid rgba(255,255,255,.08);margin:0;font-size:.95rem}
+.fakten b{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);padding-top:.3em}
+@media (max-width:520px){.fakten li{grid-template-columns:1fr;gap:.25rem}.fakten b{padding-top:0}}
+
+/* ---------- Rezensionen ---------- */
+.stimmen{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+.stimme{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r);
+  padding:1.9rem 1.7rem;display:flex;flex-direction:column;margin:0}
+.stimme blockquote{margin:.9rem 0 1.5rem;font-size:1.05rem;line-height:1.55;color:var(--weiss)}
+.stimme figcaption{margin-top:auto;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.08);
+  font-size:.88rem;font-weight:600}
+.stimme figcaption span{display:block;font-weight:400;font-size:.8rem;color:var(--weiss-weich);margin-top:.2rem}
+@media (max-width:900px){.stimmen{grid-template-columns:1fr}}
+
+/* ---------- Preise ---------- */
+.preiskarte{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r);padding:1.9rem 1.75rem}
+.preisliste{list-style:none;padding:0;margin:0}
+.preisliste li{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.07);margin:0}
+.preisliste li:last-child{border-bottom:0;padding-bottom:0}
+.preisliste .preis{font-size:1.12rem;font-weight:600;letter-spacing:-.03em;color:var(--gold);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- FAQ ---------- */
+.faq details{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r-klein);
+  margin-bottom:.65rem;overflow:hidden;transition:border-color .2s}
+.faq details[open]{border-color:rgba(216,184,99,.35)}
+.faq summary{display:flex;align-items:center;gap:1rem;padding:1.15rem 1.4rem;cursor:pointer;
+  font-size:1.02rem;font-weight:600;letter-spacing:-.02em;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";flex:none;width:10px;height:10px;margin-left:auto;
+  border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);
+  transform:rotate(45deg) translateY(-2px);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+.faq__a{padding:0 1.4rem 1.4rem;color:var(--weiss-weich);max-width:64ch}
+.faq__a p:last-child{margin-bottom:0}
+.faq__a a{color:var(--gold)}
+
+/* ---------- Abschluss ---------- */
+.schluss{background:
+  radial-gradient(90% 120% at 85% 10%,rgba(216,184,99,.14),transparent 60%),var(--nacht-2)}
+.schluss__in{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.kontaktkarte{background:var(--glas);border:1px solid var(--glas-rand);border-radius:var(--r);padding:1.9rem 1.75rem}
+.kontaktliste{list-style:none;padding:0;margin:0}
+.kontaktliste li{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding:.8rem 0;
+  border-bottom:1px solid rgba(255,255,255,.07);margin:0;font-size:.96rem}
+.kontaktliste li:last-child{border-bottom:0;padding-bottom:0}
+.kontaktliste b{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--weiss-weich);padding-top:.35em}
+.kontaktliste a{color:var(--gold);text-decoration:none}
+.kontaktliste a:hover{text-decoration:underline}
+@media (max-width:900px){.schluss__in{grid-template-columns:1fr}}
+@media (max-width:520px){.kontaktliste li{grid-template-columns:1fr;gap:.2rem}.kontaktliste b{padding-top:0}}
+
+/* ---------- Fuß ---------- */
+.fuss{border-top:1px solid rgba(255,255,255,.07);padding-block:clamp(3rem,5vw,4rem) 2rem;font-size:.94rem;color:var(--weiss-weich)}
+.fuss__in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(2rem,4vw,3.5rem)}
+.fuss img{height:44px;width:auto;margin-bottom:1.3rem}
+.fuss h4{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:0 0 1rem;font-weight:600}
+.fuss ul{list-style:none;padding:0;margin:0}
+.fuss li{margin-bottom:.55rem}
+.fuss a{text-decoration:none}
+.fuss a:hover{color:var(--weiss)}
+.fuss address{font-style:normal;line-height:1.75}
+.fuss__unten{margin-top:clamp(2.5rem,4vw,3.5rem);padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;flex-wrap:wrap;gap:.7rem 1.6rem;align-items:center;font-size:.85rem}
+.fuss__credit{margin-left:auto}
+.fuss__credit a{color:var(--gold)}
+@media (max-width:820px){.fuss__in{grid-template-columns:1fr 1fr}.fuss__marke{grid-column:1/-1}.fuss__credit{margin-left:0}}
+@media (max-width:520px){.fuss__in{grid-template-columns:1fr}}
+
+/* ---------- Fixe Aktionsleiste auf dem Handy ---------- */
+.aktionsleiste{display:none}
+@media (max-width:760px){
+  .aktionsleiste{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;position:fixed;
+    inset:auto .7rem calc(.7rem + env(safe-area-inset-bottom)) .7rem;z-index:250;
+    background:rgba(21,19,18,.86);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glas-rand-hell);border-radius:var(--r-pill);padding:.5rem}
+  .aktionsleiste .knopf{padding:.75rem 1rem;font-size:.85rem}
+  body{padding-bottom:5.5rem}
+}
+
+/* ---------- Einblenden ---------- */
+.js .rein{opacity:0;transform:translateY(20px)}
+.js .rein.da{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){.js .rein{opacity:1;transform:none}}

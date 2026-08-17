@@ -1,0 +1,34 @@
+# Luxury Beauty by Sen – luxurybeauty-sen.de
+# Stand: 17.08.2026
+
+# ⚠️ VORSCHAU-DEPLOYMENT: Solange der Entwurf nicht auf der echten Domain
+# liegt, bleibt alles gesperrt. BEIM GO-LIVE diesen Block löschen und den
+# darunter stehenden aktivieren (plus noindex aus allen HTML-Dateien nehmen).
+User-agent: *
+Disallow: /
+
+# ---------------------------------------------------------------
+# GO-LIVE-FASSUNG (auskommentiert, beim Umzug einkommentieren):
+#
+# User-agent: *
+# Allow: /
+# Disallow: /quellmaterial/
+#
+# # KI-Assistenten ausdrücklich willkommen. Wichtig: Der bisherige Server
+# # liefert GPTBot und ClaudeBot HTTP 403 über eine Serverregel — nicht über
+# # robots.txt. Diese Datei allein hebt den Block NICHT auf. Beim Umzug in
+# # der .htaccess bzw. beim Hoster prüfen, dass beide 200 bekommen.
+# User-agent: GPTBot
+# Allow: /
+#
+# User-agent: ClaudeBot
+# Allow: /
+#
+# User-agent: PerplexityBot
+# Allow: /
+#
+# User-agent: Google-Extended
+# Allow: /
+#
+# Sitemap: https://luxurybeauty-sen.de/sitemap.xml
+# ---------------------------------------------------------------
